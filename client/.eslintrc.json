@@ -1,0 +1,22 @@
+{
+  "extends": ["google", "plugin:react/recommended", "babel", "prettier"],
+  "parserOptions": {
+    "ecmaVersion": 2019,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    "object-curly-spacing": "off"
+  },
+  "env": {
+    "es6": true,
+    "jest": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
