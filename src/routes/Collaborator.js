@@ -27,7 +27,7 @@ const CollaboratorRoute = () => {
   }, [collaboratorId]);
 
   if (collaborator === null) {
-    return <IndeterminateProgressBar />;
+    return <IndeterminateProgressBar style={{ marginTop: -5 }} />;
   }
 
   return <CollaboratorDetails collaborator={collaborator} />;

@@ -1,6 +1,6 @@
 // React
 import React from 'react';
 
-const IndeterminateProgressBar = () => <progress className='progress is-small' max={100} />;
+const IndeterminateProgressBar = (props) => <progress className='progress is-primary is-small' max={100} {...props} />;
 
 export default IndeterminateProgressBar;
