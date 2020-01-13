@@ -23,7 +23,7 @@ const Pagination = ({ activePage, pagesCount }) => {
         </Link>
       </li>
     ));
-  }, [activePage, pagesCount]);
+  }, [activePage, pagesCount, onPageClick]);
 
   return (
     <nav className='pagination is-centered' role='navigation' aria-label='pagination'>

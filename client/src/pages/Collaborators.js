@@ -1,7 +1,6 @@
 // React
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useIntl } from 'react-intl';
-import { useLocation } from 'react-router-dom';
 
 // Node Modules
 import { remove as removeDiacritics } from 'diacritics';

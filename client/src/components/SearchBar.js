@@ -6,10 +6,13 @@ import { useIntl } from 'react-intl';
 const SearchBar = ({ onChange }) => {
   const { formatMessage } = useIntl();
 
-  const onInputChange = useCallback((event) => {
-    const inputValue = event.target.value;
-    onChange(inputValue);
-  }, []);
+  const onInputChange = useCallback(
+    (event) => {
+      const inputValue = event.target.value;
+      onChange(inputValue);
+    },
+    [onChange],
+  );
 
   return (
     <div className='field'>
