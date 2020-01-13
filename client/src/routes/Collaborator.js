@@ -24,7 +24,7 @@ const CollaboratorRoute = () => {
 
     const timeoutHandle = window.setTimeout(fetchCollaboratorData, 1000);
     return () => window.clearTimeout(timeoutHandle);
-  }, []);
+  }, [collaboratorId]);
 
   if (collaborator === null) {
     return <IndeterminateProgressBar />;
