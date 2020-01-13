@@ -1,4 +1,6 @@
 {
+  "hero.title": "Company Hub",
+  "hero.subtitle": "Quer saber o que seus colegas andam pensando uns dos outros?",
   "collaborators.header.title": "Lista de Colaboradores",
   "collaborators.header.subtitle": "Encontrados {count, number} {count, plural, one {colaborador} other {colaboradores}}",
   "searchbar.placeholder": "Pesquisar",
