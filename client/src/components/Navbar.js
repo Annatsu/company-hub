@@ -6,6 +6,7 @@ import cx from 'classnames';
 // Components
 import { Link } from 'react-router-dom';
 import AuthButton from './AuthButton';
+import LanguageDropdown from './LanguageDropdown';
 
 // Constants
 const NAVBAR_ID = 'app-navbar-menu';
@@ -25,6 +26,7 @@ const Navbar = () => {
             <div className='navbar-item'>
               <div className='buttons'>
                 <AuthButton />
+                <LanguageDropdown />
               </div>
             </div>
           </div>

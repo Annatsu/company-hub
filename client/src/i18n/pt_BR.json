@@ -14,5 +14,7 @@
   "routes.pageNotFound.title": "404",
   "routes.pageNotFound.subtitle": "Página não encontrada, você será redirecionado para a página principal em 10 segundos.",
   "routes.collaborators.title": "Lista de Colaboradores",
-  "routes.collaboratorDetails.title": "Perfil de {name}"
+  "routes.collaboratorDetails.title": "Perfil de {name}",
+  "locale.en": "Inglês",
+  "locale.pt": "Português (Brasil)"
 }

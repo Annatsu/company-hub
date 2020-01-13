@@ -14,5 +14,7 @@
   "routes.pageNotFound.title": "404",
   "routes.pageNotFound.subtitle": "Page not found, you will be redirected to the home page in 10 seconds.",
   "routes.collaborators.title": "Collaborators List",
-  "routes.collaboratorDetails.title": "{name} profile"
+  "routes.collaboratorDetails.title": "{name} profile",
+  "locale.en": "English",
+  "locale.pt": "Portuguese (Brazil)"
 }
