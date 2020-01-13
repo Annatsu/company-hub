@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 // Components
 import { BrowserRouter } from 'react-router-dom';
 import ApplicationRoutes from './routes';
+import Navbar from './components/Navbar';
 
 // Hooks
 import useAuthentication from './hooks/useAuthentication';
@@ -21,6 +22,7 @@ const App = () => {
   return (
     <GlobalProviders>
       <BrowserRouter>
+        <Navbar />
         <ApplicationRoutes />
       </BrowserRouter>
     </GlobalProviders>
