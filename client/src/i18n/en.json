@@ -5,5 +5,6 @@
   "collaborator.greetings": "Hello!",
   "collaborator.introduction": "My name is {name}. I work as an {role} at {company} since {date}.",
   "collaborator.leaveFeedback": "Appreciate my work? Consider leaving a feedback :D",
-  "collaborator.leaveFeedback.placeholder": "e.g. Gratz on the last issue!"
+  "collaborator.leaveFeedback.placeholder": "e.g. Gratz on the last issue!",
+  "collaborator.likes": "{count, number} {count, plural, one {like} other {likes}}"
 }
