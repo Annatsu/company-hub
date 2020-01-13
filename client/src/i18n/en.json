@@ -3,5 +3,7 @@
   "collaborators.header.subtitle": "Found {count, number} {count, plural, one {collaborator} other {collaborators}}",
   "searchbar.placeholder": "Search",
   "collaborator.greetings": "Hello!",
-  "collaborator.introduction": "My name is {name}. I work as an {role} at {company} since {date}."
+  "collaborator.introduction": "My name is {name}. I work as an {role} at {company} since {date}.",
+  "collaborator.leaveFeedback": "Appreciate my work? Consider leaving a feedback :D",
+  "collaborator.leaveFeedback.placeholder": "e.g. Gratz on the last issue!"
 }

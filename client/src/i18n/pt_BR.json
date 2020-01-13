@@ -3,5 +3,7 @@
   "collaborators.header.subtitle": "Encontrados {count, number} {count, plural, one {colaborador} other {colaboradores}}",
   "searchbar.placeholder": "Pesquisar",
   "collaborator.greetings": "Olá!",
-  "collaborator.introduction": "Meu nome é {name}. Eu trabalho como {role} na {company} desde {date}."
+  "collaborator.introduction": "Meu nome é {name}. Eu trabalho como {role} na {company} desde {date}.",
+  "collaborator.leaveFeedback": "Gosta do que eu faço? Considere deixar um feedback :)",
+  "collaborator.leaveFeedback.placeholder": "Exemplo: Parabéns pela última tarefa!"
 }
