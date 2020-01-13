@@ -1,5 +1,5 @@
 // React
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useIntl } from 'react-intl';
 
 // Node Modules
@@ -7,6 +7,7 @@ import { remove as removeDiacritics } from 'diacritics';
 
 // Components
 import CollaboratorsList from '../components/CollaboratorsList';
+import SearchBar from '../components/SearchBar';
 
 // Repositories
 import CollaboratorRepository from '../repositories/Collaborator';
@@ -21,9 +22,12 @@ const CollaboratorsPage = () => {
   const [page, setPage] = useState(1);
 
   const filteredCollaborators = useMemo(() => {
-    const collaboratorsToFilter = searchQuery.length !== 0 ? filterCollaboratorsBySearch(collaborators) : collaborators;
+    const collaboratorsToFilter =
+      searchQuery.length !== 0 ? filterCollaboratorsBySearch(searchQuery, collaborators) : collaborators;
+
     const sliceStart = (page - 1) * MAX_COLLABORATORS_PER_PAGE;
     const sliceEnd = page * MAX_COLLABORATORS_PER_PAGE;
+
     return collaboratorsToFilter.slice(sliceStart, sliceEnd);
   }, [collaborators, page, searchQuery]);
 
@@ -37,6 +41,8 @@ const CollaboratorsPage = () => {
     fetchCollaborators();
   }, []);
 
+  const onCollaboratorSearch = useCallback((searchValue) => setSearchQuery(searchValue), []);
+
   return (
     <section className='section'>
       <div className='container'>
@@ -47,7 +53,9 @@ const CollaboratorsPage = () => {
               {formatMessage({ id: 'collaborators.header.subtitle' }, { count: collaborators.length })}
             </h2>
           </div>
-          <div className='column'></div>
+          <div className='column'>
+            <SearchBar onChange={onCollaboratorSearch} />
+          </div>
         </div>
 
         <CollaboratorsList>
@@ -65,8 +73,13 @@ const CollaboratorsPage = () => {
 };
 
 const filterCollaboratorsBySearch = (searchQuery, collaborators) => {
-  const normalizedSearchQuery = removeDiacritics(searchQuery);
-  return collaborators.filter(({ name }) => name.indexOf(normalizedSearchQuery) !== -1);
+  const normalizedSearchQuery = removeDiacritics(searchQuery).toLowerCase();
+  return collaborators.filter(
+    ({ name, role, company }) =>
+      name.toLowerCase().indexOf(normalizedSearchQuery) !== -1 ||
+      role.toLowerCase().indexOf(normalizedSearchQuery) !== -1 ||
+      company.toLowerCase().indexOf(normalizedSearchQuery) !== -1,
+  );
 };
 
 export default CollaboratorsPage;
