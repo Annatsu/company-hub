@@ -1,11 +1,21 @@
 // React
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
 
-const Home = () => (
-  <div>
-    home <Link to='/test'>Goto</Link>
-  </div>
-);
+// Contexts
+import AuthenticationContext from '../contexts/Authentication';
+
+// Pages
+import LandingPage from '../pages/LandingPage';
+import CollaboratorsPage from '../pages/Collaborators';
+
+const Home = () => {
+  const { authenticated } = useContext(AuthenticationContext);
+
+  if (authenticated) {
+    return <CollaboratorsPage />;
+  } else {
+    return <LandingPage />;
+  }
+};
 
 export default Home;
