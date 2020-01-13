@@ -1,5 +1,5 @@
 // React
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styled from '@emotion/styled';
 import { useIntl } from 'react-intl';
 
@@ -9,6 +9,13 @@ import { collaboratorPropType } from '../constants/prop-types';
 // Components
 import ProfilePicture from '../components/ProfilePicture';
 import LeaveFeedback from '../components/LeaveFeedback';
+import FeedbackList from '../components/FeedbackList';
+
+// Repositories
+import FeedbackRepository from '../repositories/Feedback';
+
+// Constants
+import { MAX_FEEDBACKS_PER_PAGE } from '../constants/feedbacks';
 
 const Header = styled.header`
   display: flex;
@@ -29,8 +36,23 @@ const ProfileDetails = styled.div`
   }
 `;
 
+const ProfileSection = styled.div`
+  margin-top: 40px;
+`;
+
 const CollaboratorDetails = ({ collaborator }) => {
   const { formatMessage, formatDate } = useIntl();
+  const [feedbacks, setFeedbacks] = useState([]);
+
+  const fetchFeedbacks = useCallback(async () => {
+    const feedbackRepository = new FeedbackRepository();
+    const feedbackList = await feedbackRepository.getAll(collaborator.id);
+    setFeedbacks(feedbackList);
+  }, [collaborator]);
+
+  useEffect(() => {
+    fetchFeedbacks();
+  }, [fetchFeedbacks]);
 
   return (
     <>
@@ -52,10 +74,23 @@ const CollaboratorDetails = ({ collaborator }) => {
         </ProfileDetails>
       </Header>
 
-      <div style={{ marginTop: 40 }}>
+      <ProfileSection>
         <h2 className='subtitle'>{formatMessage({ id: 'collaborator.leaveFeedback' })}</h2>
-        <LeaveFeedback collaboratorId={collaborator.id} />
-      </div>
+        <LeaveFeedback collaboratorId={collaborator.id} onSendFeedback={fetchFeedbacks} />
+      </ProfileSection>
+
+      <ProfileSection>
+        <FeedbackList>
+          {feedbacks.map((feedback) => (
+            <FeedbackList.Item
+              key={feedback.id}
+              feedback={feedback}
+              onLike={fetchFeedbacks}
+              onDelete={fetchFeedbacks}
+            />
+          ))}
+        </FeedbackList>
+      </ProfileSection>
     </>
   );
 };
