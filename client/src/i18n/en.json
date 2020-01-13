@@ -1,6 +1,8 @@
 {
   "hero.title": "Company Hub",
   "hero.subtitle": "Want to know what your colleagues are thinking about each other?",
+  "authentication.login": "Login",
+  "authentication.logout": "Logout",
   "collaborators.header.title": "Collaborators List",
   "collaborators.header.subtitle": "Found {count, number} {count, plural, one {collaborator} other {collaborators}}",
   "searchbar.placeholder": "Search",
