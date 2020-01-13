@@ -14,7 +14,7 @@ import Pagination from '../components/Pagination';
 import CollaboratorRepository from '../repositories/Collaborator';
 
 // Custom Hooks
-import useQueryParams from '../hooks/useQueryParams';
+import usePagination from '../hooks/usePagination';
 
 // Constants
 import {
@@ -26,21 +26,16 @@ const CollaboratorsPage = () => {
   const { formatMessage } = useIntl();
   const [collaborators, setCollaborators] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const queryParams = useQueryParams();
-
-  const page = parseInt(queryParams.get('page'), 10) || 1;
 
   const searchFilteredCollaborators = useMemo(
     () => (searchQuery.length !== 0 ? filterCollaboratorsBySearch(searchQuery, collaborators) : collaborators),
     [collaborators, searchQuery],
   );
 
-  const pageFilteredCollaborators = useMemo(() => {
-    const sliceStart = (page - 1) * MAX_COLLABORATORS_PER_PAGE;
-    const sliceEnd = page * MAX_COLLABORATORS_PER_PAGE;
-
-    return searchFilteredCollaborators.slice(sliceStart, sliceEnd);
-  }, [searchFilteredCollaborators, page]);
+  const { page, displayableItems, pagesCount } = usePagination({
+    data: searchFilteredCollaborators,
+    perPage: MAX_COLLABORATORS_PER_PAGE,
+  });
 
   useEffect(() => {
     const fetchCollaborators = async () => {
@@ -75,7 +70,7 @@ const CollaboratorsPage = () => {
       </div>
 
       <CollaboratorsList>
-        {pageFilteredCollaborators.map((collaborator) => (
+        {displayableItems.map((collaborator) => (
           <CollaboratorsList.Item
             key={collaborator.id}
             collaborator={collaborator}
@@ -84,10 +79,7 @@ const CollaboratorsPage = () => {
         ))}
       </CollaboratorsList>
 
-      <Pagination
-        activePage={page}
-        pagesCount={Math.ceil(searchFilteredCollaborators.length / MAX_COLLABORATORS_PER_PAGE)}
-      />
+      <Pagination activePage={page} pagesCount={pagesCount} />
     </>
   );
 };
