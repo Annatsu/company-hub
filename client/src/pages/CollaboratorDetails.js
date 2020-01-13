@@ -10,9 +10,13 @@ import { collaboratorPropType } from '../constants/prop-types';
 import ProfilePicture from '../components/ProfilePicture';
 import LeaveFeedback from '../components/LeaveFeedback';
 import FeedbackList from '../components/FeedbackList';
+import Pagination from '../components/Pagination';
 
 // Repositories
 import FeedbackRepository from '../repositories/Feedback';
+
+// Custom Hooks
+import usePagination from '../hooks/usePagination';
 
 // Constants
 import { MAX_FEEDBACKS_PER_PAGE } from '../constants/feedbacks';
@@ -43,6 +47,8 @@ const ProfileSection = styled.div`
 const CollaboratorDetails = ({ collaborator }) => {
   const { formatMessage, formatDate } = useIntl();
   const [feedbacks, setFeedbacks] = useState([]);
+
+  const { page, displayableItems, pagesCount } = usePagination({ data: feedbacks, perPage: MAX_FEEDBACKS_PER_PAGE });
 
   const fetchFeedbacks = useCallback(async () => {
     const feedbackRepository = new FeedbackRepository();
@@ -81,7 +87,7 @@ const CollaboratorDetails = ({ collaborator }) => {
 
       <ProfileSection>
         <FeedbackList>
-          {feedbacks.map((feedback) => (
+          {displayableItems.map((feedback) => (
             <FeedbackList.Item
               key={feedback.id}
               feedback={feedback}
@@ -90,6 +96,8 @@ const CollaboratorDetails = ({ collaborator }) => {
             />
           ))}
         </FeedbackList>
+
+        <Pagination activePage={page} pagesCount={pagesCount} />
       </ProfileSection>
     </>
   );
