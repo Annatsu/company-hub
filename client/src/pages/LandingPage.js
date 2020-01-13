@@ -1,10 +1,9 @@
 // React
 import React from 'react';
 
-const LandingPage = () => (
-  <div>
-    <h1>Welcome to Company Hub!</h1>
-  </div>
-);
+// Components
+import Hero from '../components/Hero';
+
+const LandingPage = () => <Hero />;
 
 export default LandingPage;
