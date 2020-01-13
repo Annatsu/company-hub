@@ -12,5 +12,7 @@
   "collaborator.leaveFeedback.placeholder": "Exemplo: Parabéns pela última tarefa!",
   "collaborator.likes": "{count, number} {count, plural, one {curtida} other {curtidas}}",
   "routes.pageNotFound.title": "404",
-  "routes.pageNotFound.subtitle": "Página não encontrada, você será redirecionado para a página principal em 10 segundos."
+  "routes.pageNotFound.subtitle": "Página não encontrada, você será redirecionado para a página principal em 10 segundos.",
+  "routes.collaborators.title": "Lista de Colaboradores",
+  "routes.collaboratorDetails.title": "Perfil de {name}"
 }

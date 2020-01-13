@@ -18,6 +18,7 @@ import FeedbackRepository from '../repositories/Feedback';
 
 // Custom Hooks
 import usePagination from '../hooks/usePagination';
+import useTitle from '../hooks/useTitle';
 
 // Constants
 import { MAX_FEEDBACKS_PER_PAGE } from '../constants/feedbacks';
@@ -48,6 +49,7 @@ const ProfileSection = styled.div`
 const CollaboratorDetails = ({ collaborator }) => {
   const { formatMessage, formatDate } = useIntl();
   const [feedbacks, setFeedbacks] = useState([]);
+  useTitle(formatMessage({ id: 'routes.collaboratorDetails.title' }, { name: collaborator.name }));
 
   const { page, displayableItems, pagesCount } = usePagination({ data: feedbacks, perPage: MAX_FEEDBACKS_PER_PAGE });
 

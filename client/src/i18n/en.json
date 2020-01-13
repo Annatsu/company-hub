@@ -12,5 +12,7 @@
   "collaborator.leaveFeedback.placeholder": "e.g. Gratz on the last issue!",
   "collaborator.likes": "{count, number} {count, plural, one {like} other {likes}}",
   "routes.pageNotFound.title": "404",
-  "routes.pageNotFound.subtitle": "Page not found, you will be redirected to the home page in 10 seconds."
+  "routes.pageNotFound.subtitle": "Page not found, you will be redirected to the home page in 10 seconds.",
+  "routes.collaborators.title": "Collaborators List",
+  "routes.collaboratorDetails.title": "{name} profile"
 }

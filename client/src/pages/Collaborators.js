@@ -16,6 +16,7 @@ import CollaboratorRepository from '../repositories/Collaborator';
 
 // Custom Hooks
 import usePagination from '../hooks/usePagination';
+import useTitle from '../hooks/useTitle';
 
 // Constants
 import {
@@ -27,6 +28,7 @@ const CollaboratorsPage = () => {
   const { formatMessage } = useIntl();
   const [collaborators, setCollaborators] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  useTitle(formatMessage({ id: 'routes.collaborators.title' }));
 
   const searchFilteredCollaborators = useMemo(
     () => (searchQuery.length !== 0 ? filterCollaboratorsBySearch(searchQuery, collaborators) : collaborators),

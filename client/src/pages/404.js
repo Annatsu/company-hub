@@ -2,11 +2,15 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 
+// Custom Hooks
+import useTitle from '../hooks/useTitle';
+
 // Components
 import ApplicationFrame from '../components/ApplicationFrame';
 
 const PageNotFound = () => {
   const { formatMessage } = useIntl();
+  useTitle(formatMessage({ id: 'routes.pageNotFound.title' }));
 
   return (
     <ApplicationFrame>
