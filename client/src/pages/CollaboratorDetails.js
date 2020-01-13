@@ -7,6 +7,7 @@ import { useIntl } from 'react-intl';
 import { collaboratorPropType } from '../constants/prop-types';
 
 // Components
+import ApplicationFrame from '../components/ApplicationFrame';
 import ProfilePicture from '../components/ProfilePicture';
 import LeaveFeedback from '../components/LeaveFeedback';
 import FeedbackList from '../components/FeedbackList';
@@ -61,7 +62,7 @@ const CollaboratorDetails = ({ collaborator }) => {
   }, [fetchFeedbacks]);
 
   return (
-    <>
+    <ApplicationFrame>
       <Header>
         <ProfilePicture lg src={collaborator.avatar} />
         <ProfileDetails>
@@ -99,7 +100,7 @@ const CollaboratorDetails = ({ collaborator }) => {
 
         <Pagination activePage={page} pagesCount={pagesCount} />
       </ProfileSection>
-    </>
+    </ApplicationFrame>
   );
 };
 

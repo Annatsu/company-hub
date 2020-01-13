@@ -6,6 +6,7 @@ import { useIntl } from 'react-intl';
 import { remove as removeDiacritics } from 'diacritics';
 
 // Components
+import ApplicationFrame from '../components/ApplicationFrame';
 import CollaboratorsList from '../components/CollaboratorsList';
 import SearchBar from '../components/SearchBar';
 import Pagination from '../components/Pagination';
@@ -56,7 +57,7 @@ const CollaboratorsPage = () => {
   const onCollaboratorSearch = useCallback((searchValue) => setSearchQuery(searchValue), []);
 
   return (
-    <>
+    <ApplicationFrame>
       <div className='columns'>
         <div className='column'>
           <h1 className='title'>{formatMessage({ id: 'collaborators.header.title' })}</h1>
@@ -80,7 +81,7 @@ const CollaboratorsPage = () => {
       </CollaboratorsList>
 
       <Pagination activePage={page} pagesCount={pagesCount} />
-    </>
+    </ApplicationFrame>
   );
 };
 

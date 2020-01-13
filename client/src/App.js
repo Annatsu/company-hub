@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 // Components
 import { BrowserRouter } from 'react-router-dom';
-import ApplicationFrame from './components/ApplicationFrame';
 import ApplicationRoutes from './routes';
 
 // Hooks
@@ -21,11 +20,9 @@ import * as messages from './i18n';
 const App = () => {
   return (
     <GlobalProviders>
-      <ApplicationFrame>
-        <BrowserRouter>
-          <ApplicationRoutes />
-        </BrowserRouter>
-      </ApplicationFrame>
+      <BrowserRouter>
+        <ApplicationRoutes />
+      </BrowserRouter>
     </GlobalProviders>
   );
 };
