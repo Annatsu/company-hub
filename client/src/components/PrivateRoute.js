@@ -22,7 +22,7 @@ const PrivateRoute = ({ component: Component, redirectToUrl = '/signin', ...rest
 };
 
 PrivateRoute.propTypes = {
-  component: PropTypes.element,
+  component: PropTypes.func,
   redirectToUrl: PropTypes.string,
 };
 
