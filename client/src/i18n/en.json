@@ -1,4 +1,5 @@
 {
   "collaborators.header.title": "Collaborators List",
-  "collaborators.header.subtitle": "Found {count, number} {count, plural, one {collaborator} other {collaborators}}"
+  "collaborators.header.subtitle": "Found {count, number} {count, plural, one {collaborator} other {collaborators}}",
+  "searchbar.placeholder": "Search"
 }
