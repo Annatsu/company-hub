@@ -1,5 +1,7 @@
 {
   "collaborators.header.title": "Collaborators List",
   "collaborators.header.subtitle": "Found {count, number} {count, plural, one {collaborator} other {collaborators}}",
-  "searchbar.placeholder": "Search"
+  "searchbar.placeholder": "Search",
+  "collaborator.greetings": "Hello!",
+  "collaborator.introduction": "My name is {name}. I work as an {role} at {company} since {date}."
 }
