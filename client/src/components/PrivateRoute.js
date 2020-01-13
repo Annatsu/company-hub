@@ -8,7 +8,7 @@ import { Route, Redirect } from 'react-router-dom';
 // Contexts
 import AuthenticationContext from '../contexts/Authentication';
 
-const PrivateRoute = ({ component: Component, redirectToUrl = '/signin', ...rest }) => {
+const PrivateRoute = ({ component: Component, redirectToUrl = '/', ...rest }) => {
   const { authenticated } = useContext(AuthenticationContext);
 
   return (
