@@ -1,3 +1,4 @@
 {
-  "collaborators.header.title": "Lista de Colaboradores"
+  "collaborators.header.title": "Lista de Colaboradores",
+  "collaborators.header.subtitle": "Encontrados {count, number} {count, plural, one {colaborador} other {colaboradores}}"
 }
