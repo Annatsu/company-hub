@@ -1,6 +1,7 @@
 // React
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 // Node Modules
 import { remove as removeDiacritics } from 'diacritics';
@@ -8,37 +9,54 @@ import { remove as removeDiacritics } from 'diacritics';
 // Components
 import CollaboratorsList from '../components/CollaboratorsList';
 import SearchBar from '../components/SearchBar';
+import Pagination from '../components/Pagination';
 
 // Repositories
 import CollaboratorRepository from '../repositories/Collaborator';
 
+// Custom Hooks
+import useQueryParams from '../hooks/useQueryParams';
+
 // Constants
-import { MAX_COLLABORATORS_PER_PAGE } from '../constants/collaborators';
+import {
+  MAX_COLLABORATORS_PER_PAGE,
+  LOCAL_STORAGE_CACHE_KEY as COLLABORATORS_CACHE_KEY,
+} from '../constants/collaborators';
 
 const CollaboratorsPage = () => {
   const { formatMessage } = useIntl();
   const [collaborators, setCollaborators] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [page, setPage] = useState(1);
+  const queryParams = useQueryParams();
 
-  const filteredCollaborators = useMemo(() => {
-    const collaboratorsToFilter =
-      searchQuery.length !== 0 ? filterCollaboratorsBySearch(searchQuery, collaborators) : collaborators;
+  const page = parseInt(queryParams.get('page'), 10) || 1;
 
+  const searchFilteredCollaborators = useMemo(
+    () => (searchQuery.length !== 0 ? filterCollaboratorsBySearch(searchQuery, collaborators) : collaborators),
+    [collaborators, searchQuery],
+  );
+
+  const pageFilteredCollaborators = useMemo(() => {
     const sliceStart = (page - 1) * MAX_COLLABORATORS_PER_PAGE;
     const sliceEnd = page * MAX_COLLABORATORS_PER_PAGE;
 
-    return collaboratorsToFilter.slice(sliceStart, sliceEnd);
-  }, [collaborators, page, searchQuery]);
+    return searchFilteredCollaborators.slice(sliceStart, sliceEnd);
+  }, [searchFilteredCollaborators, page]);
 
   useEffect(() => {
     const fetchCollaborators = async () => {
       const collaboratorRepository = new CollaboratorRepository();
       const collaboratorsList = await collaboratorRepository.getAll();
+      window.localStorage.setItem(COLLABORATORS_CACHE_KEY, JSON.stringify(collaboratorsList));
       setCollaborators(collaboratorsList);
     };
 
-    fetchCollaborators();
+    const storedCollaborators = JSON.parse(window.localStorage.getItem(COLLABORATORS_CACHE_KEY));
+    if (storedCollaborators) {
+      setCollaborators(storedCollaborators);
+    } else {
+      fetchCollaborators();
+    }
   }, []);
 
   const onCollaboratorSearch = useCallback((searchValue) => setSearchQuery(searchValue), []);
@@ -59,7 +77,7 @@ const CollaboratorsPage = () => {
         </div>
 
         <CollaboratorsList>
-          {filteredCollaborators.map((collaborator) => (
+          {pageFilteredCollaborators.map((collaborator) => (
             <CollaboratorsList.Item
               key={collaborator.id}
               collaborator={collaborator}
@@ -67,6 +85,11 @@ const CollaboratorsPage = () => {
             />
           ))}
         </CollaboratorsList>
+
+        <Pagination
+          activePage={page}
+          pagesCount={Math.ceil(searchFilteredCollaborators.length / MAX_COLLABORATORS_PER_PAGE)}
+        />
       </div>
     </section>
   );
