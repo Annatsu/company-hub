@@ -61,36 +61,34 @@ const CollaboratorsPage = () => {
   const onCollaboratorSearch = useCallback((searchValue) => setSearchQuery(searchValue), []);
 
   return (
-    <section className='section'>
-      <div className='container'>
-        <div className='columns'>
-          <div className='column'>
-            <h1 className='title'>{formatMessage({ id: 'collaborators.header.title' })}</h1>
-            <h2 className='subtitle'>
-              {formatMessage({ id: 'collaborators.header.subtitle' }, { count: collaborators.length })}
-            </h2>
-          </div>
-          <div className='column'>
-            <SearchBar onChange={onCollaboratorSearch} />
-          </div>
+    <>
+      <div className='columns'>
+        <div className='column'>
+          <h1 className='title'>{formatMessage({ id: 'collaborators.header.title' })}</h1>
+          <h2 className='subtitle'>
+            {formatMessage({ id: 'collaborators.header.subtitle' }, { count: collaborators.length })}
+          </h2>
         </div>
-
-        <CollaboratorsList>
-          {pageFilteredCollaborators.map((collaborator) => (
-            <CollaboratorsList.Item
-              key={collaborator.id}
-              collaborator={collaborator}
-              collaboratorUrl={`/collaborator/${collaborator.id}`}
-            />
-          ))}
-        </CollaboratorsList>
-
-        <Pagination
-          activePage={page}
-          pagesCount={Math.ceil(searchFilteredCollaborators.length / MAX_COLLABORATORS_PER_PAGE)}
-        />
+        <div className='column'>
+          <SearchBar onChange={onCollaboratorSearch} />
+        </div>
       </div>
-    </section>
+
+      <CollaboratorsList>
+        {pageFilteredCollaborators.map((collaborator) => (
+          <CollaboratorsList.Item
+            key={collaborator.id}
+            collaborator={collaborator}
+            collaboratorUrl={`/collaborator/${collaborator.id}`}
+          />
+        ))}
+      </CollaboratorsList>
+
+      <Pagination
+        activePage={page}
+        pagesCount={Math.ceil(searchFilteredCollaborators.length / MAX_COLLABORATORS_PER_PAGE)}
+      />
+    </>
   );
 };
 
