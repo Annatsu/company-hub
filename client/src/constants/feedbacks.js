@@ -1,1 +1,2 @@
 export const MAX_FEEDBACKS_PER_PAGE = 20;
+export const FEEDBACK_DELETE_THRESHOLD = 5;
