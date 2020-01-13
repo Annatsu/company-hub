@@ -12,10 +12,15 @@ const useAuthentication = () => {
     setAuthentication(false);
   }, []);
 
+  const toggleAuthenticated = useCallback(() => {
+    setAuthentication(!authenticated);
+  });
+
   return {
     authenticated,
     setAuthenticated,
     setUnauthenticated,
+    toggleAuthenticated,
   };
 };
 
