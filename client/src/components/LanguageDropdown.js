@@ -1,6 +1,7 @@
 // React
 import React, { useContext } from 'react';
 import { useIntl } from 'react-intl';
+import styled from '@emotion/styled';
 
 // Contexts
 import i18nContext from '../contexts/i18n';
@@ -8,6 +9,13 @@ import i18nContext from '../contexts/i18n';
 // Constants
 const DROPDOWN_ID = 'languages-dropdown';
 const locales = ['en', 'pt'];
+
+const LanguageItem = styled.li`
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+`;
 
 const LanguageDropdown = () => {
   const { formatMessage } = useIntl();
@@ -25,19 +33,13 @@ const LanguageDropdown = () => {
       </div>
       <div className='dropdown-menu' id={DROPDOWN_ID} role='menu'>
         <div className='dropdown-content'>
-          {locales.map((locale) => (
-            <a
-              key={locale}
-              href='#'
-              className='dropdown-item'
-              onClick={(e) => {
-                e.preventDefault();
-                setLocale(locale);
-              }}
-            >
-              {formatMessage({ id: `locale.${locale}` })}
-            </a>
-          ))}
+          <ul>
+            {locales.map((locale) => (
+              <LanguageItem key={locale} className='dropdown-item' onClick={() => setLocale(locale)}>
+                {formatMessage({ id: `locale.${locale}` })}
+              </LanguageItem>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
