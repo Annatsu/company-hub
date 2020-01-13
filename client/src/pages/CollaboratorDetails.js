@@ -8,17 +8,24 @@ import { collaboratorPropType } from '../constants/prop-types';
 
 // Components
 import ProfilePicture from '../components/ProfilePicture';
+import LeaveFeedback from '../components/LeaveFeedback';
 
 const Header = styled.header`
-  text-align: center;
-  & > h1,
-  & > p {
-    margin-top: 20px;
-  }
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 
-  & > * {
-    margin-left: auto;
-    margin-right: auto;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
+
+const ProfileDetails = styled.div`
+  margin-left: 20px;
+  @media (max-width: 768px) {
+    margin-left: 0px;
+    margin-top: 20px;
+    text-align: center;
   }
 `;
 
@@ -29,19 +36,26 @@ const CollaboratorDetails = ({ collaborator }) => {
     <>
       <Header>
         <ProfilePicture lg src={collaborator.avatar} />
-        <h1 className='title'>{formatMessage({ id: 'collaborator.greetings' })}</h1>
-        <p className='subtitle'>
-          {formatMessage(
-            { id: 'collaborator.introduction' },
-            {
-              name: <strong>{collaborator.name}</strong>,
-              role: <strong>{collaborator.role}</strong>,
-              company: <strong>{collaborator.company}</strong>,
-              date: <strong>{formatDate(collaborator.createdAt)}</strong>,
-            },
-          )}
-        </p>
+        <ProfileDetails>
+          <h1 className='title'>{formatMessage({ id: 'collaborator.greetings' })}</h1>
+          <p className='subtitle'>
+            {formatMessage(
+              { id: 'collaborator.introduction' },
+              {
+                name: <strong>{collaborator.name}</strong>,
+                role: <strong>{collaborator.role}</strong>,
+                company: <strong>{collaborator.company}</strong>,
+                date: <strong>{formatDate(collaborator.createdAt)}</strong>,
+              },
+            )}
+          </p>
+        </ProfileDetails>
       </Header>
+
+      <div style={{ marginTop: 40 }}>
+        <h2 className='subtitle'>{formatMessage({ id: 'collaborator.leaveFeedback' })}</h2>
+        <LeaveFeedback collaboratorId={collaborator.id} />
+      </div>
     </>
   );
 };
