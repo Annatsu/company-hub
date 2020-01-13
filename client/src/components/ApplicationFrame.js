@@ -1,11 +1,17 @@
 // React
 import React from 'react';
-import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 
-const ApplicationFrameContainer = styled.div``;
+const ApplicationFrame = ({ children, ...rest }) => {
+  return (
+    <section className='section' {...rest}>
+      <div className='container'>{children}</div>
+    </section>
+  );
+};
 
-const ApplicationFrame = (props) => {
-  return <ApplicationFrameContainer {...props} />;
+ApplicationFrame.propTypes = {
+  children: PropTypes.node,
 };
 
 export default ApplicationFrame;
