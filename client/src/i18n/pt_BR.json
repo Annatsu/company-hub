@@ -6,5 +6,7 @@
   "collaborator.introduction": "Meu nome é {name}. Eu trabalho como {role} na {company} desde {date}.",
   "collaborator.leaveFeedback": "Gosta do que eu faço? Considere deixar um feedback :)",
   "collaborator.leaveFeedback.placeholder": "Exemplo: Parabéns pela última tarefa!",
-  "collaborator.likes": "{count, number} {count, plural, one {curtida} other {curtidas}}"
+  "collaborator.likes": "{count, number} {count, plural, one {curtida} other {curtidas}}",
+  "routes.pageNotFound.title": "404",
+  "routes.pageNotFound.subtitle": "Página não encontrada, você será redirecionado para a página principal em 10 segundos."
 }
