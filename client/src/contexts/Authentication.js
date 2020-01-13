@@ -1,6 +1,6 @@
 // React
 import { createContext } from 'react';
 
-const AuthenticationContext = createContext({ authenticated: false });
+const AuthenticationContext = createContext();
 
 export default AuthenticationContext;

@@ -6,12 +6,17 @@ import { BrowserRouter } from 'react-router-dom';
 import ApplicationFrame from './components/ApplicationFrame';
 import ApplicationRoutes from './routes';
 
+// Hooks
+import useAuthentication from './hooks/useAuthentication';
+
 // Contexts
 import AuthenticationContext from './contexts/Authentication';
 
 const App = () => {
+  const authentication = useAuthentication();
+
   return (
-    <AuthenticationContext.Provider>
+    <AuthenticationContext.Provider value={authentication}>
       <ApplicationFrame>
         <BrowserRouter>
           <ApplicationRoutes />
