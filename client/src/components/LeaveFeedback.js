@@ -30,7 +30,7 @@ const FeedbackContainer = styled.div`
   position: relative;
 `;
 
-const LeaveFeedback = ({ collaboratorId }) => {
+const LeaveFeedback = ({ collaboratorId, onSendFeedback }) => {
   const { formatMessage } = useIntl();
   const textAreaRef = useRef(null);
 
@@ -39,6 +39,10 @@ const LeaveFeedback = ({ collaboratorId }) => {
       const feedbackRepository = new FeedbackRepository();
       await feedbackRepository.create(payload);
       textAreaRef.current.value = '';
+
+      if (typeof onSendFeedback === 'function') {
+        onSendFeedback();
+      }
     };
 
     const message = textAreaRef.current.value;
@@ -46,7 +50,7 @@ const LeaveFeedback = ({ collaboratorId }) => {
     if (message && message.length > 0) {
       postData({ collaboratorId, message, like: 1 });
     }
-  }, [collaboratorId]);
+  }, [collaboratorId, onSendFeedback]);
 
   return (
     <FeedbackContainer>
@@ -64,6 +68,7 @@ const LeaveFeedback = ({ collaboratorId }) => {
 
 LeaveFeedback.propTypes = {
   collaboratorId: PropTypes.string.isRequired,
+  onSendFeedback: PropTypes.func,
 };
 
 export default LeaveFeedback;
