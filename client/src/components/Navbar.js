@@ -2,6 +2,7 @@
 import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import styled from '@emotion/styled';
 
 // Components
 import { Link } from 'react-router-dom';
@@ -11,11 +12,20 @@ import LanguageDropdown from './LanguageDropdown';
 // Constants
 const NAVBAR_ID = 'app-navbar-menu';
 
+const BurgerButton = styled.button`
+  background: transparent;
+  border: none;
+`;
+
 const Navbar = () => {
   const [isBurgerToggled, setBurgerState] = useState(false);
-  const toggleBurger = useCallback(() => {
-    setBurgerState(!isBurgerToggled);
-  }, [isBurgerToggled]);
+  const toggleBurger = useCallback(
+    (e) => {
+      e.preventDefault();
+      setBurgerState(!isBurgerToggled);
+    },
+    [isBurgerToggled],
+  );
 
   return (
     <nav className='navbar is-fixed-top is-transparent' role='navigation'>
@@ -42,8 +52,7 @@ const NavbarBrand = ({ isActive, onBurgerClick }) => (
       CH
     </Link>
 
-    <a
-      role='button'
+    <BurgerButton
       className={cx('navbar-burger burger', isActive && 'is-active')}
       aria-label='menu'
       aria-expanded='false'
@@ -53,7 +62,7 @@ const NavbarBrand = ({ isActive, onBurgerClick }) => (
       <span aria-hidden='true'></span>
       <span aria-hidden='true'></span>
       <span aria-hidden='true'></span>
-    </a>
+    </BurgerButton>
   </div>
 );
 
