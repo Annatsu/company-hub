@@ -14,7 +14,7 @@ const useAuthentication = () => {
 
   const toggleAuthenticated = useCallback(() => {
     setAuthentication(!authenticated);
-  });
+  }, [authenticated]);
 
   return {
     authenticated,
